@@ -12,11 +12,18 @@ print "[Category] [Budget Remaining]"
 i = 0
 while i != num_rows:
   print "%s" % (categories[i]),
+  l = 0
+  
   if len(categories[i]) < 10:
-    xyz = 10 - len(categories[i])/2
+    xyz = 10 - len(categories[i]) - 3
+    l = 0
+    if xyz % 2 == 1:
+      l = 1
     while not((xyz < 0)):
       print " ",
-      xyz -= 1
-  print "%s" % (budgets[i])
+      xyz -= 2
+
+  print "= ",
+  print "%s" % ("$" + budgets[i])
   print " "
   i += 1
