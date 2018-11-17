@@ -1,1 +1,22 @@
+num_rows = int(raw_input("How many categories do you want to track? Type the number here in integer form: "))
 
+budgets = []
+categories = []
+v = 1
+while v <= num_rows:
+  categories.append(raw_input(("Type category #%s here: ") % (v)))
+  budgets.append(raw_input(("Type the budget for category #%s here: ") % (v)))
+  v += 1
+print " "
+print "[Category] [Budget Remaining]"
+i = 0
+while i != num_rows:
+  print "%s" % (categories[i]),
+  if len(categories[i]) < 10:
+    xyz = 10 - len(categories[i])/2
+    while not((xyz < 0)):
+      print " ",
+      xyz -= 1
+  print "%s" % (budgets[i])
+  print " "
+  i += 1
