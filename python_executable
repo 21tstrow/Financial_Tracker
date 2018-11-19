@@ -27,3 +27,48 @@ while i != num_rows:
   print "%s" % ("$" + budgets[i])
   print " "
   i += 1
+
+i = 0
+
+options = ["Deposit All", "Deposit One", "Withdraw", "Transfer", "Toggle Percentages", "Help"]
+
+options_compare = ["deposit all", "deposit one", "withdraw", "transfer", "toggle percentages", "help"]
+
+def user_actions():
+  print "What would you like to do?"
+  i = 0
+  while i != 6:
+    print "-",
+    print options[i]
+    i += 1
+  global user_next
+  user_next = raw_input("Type here:").lower()
+  def spell_check():
+    global user_next
+    testcase1 = 1
+    for i in options_compare:
+      if i == user_next:
+        testcase1 = 0
+    if testcase1 != 0:
+      print " "
+      print "Double check your spelling and try again; the dash in front of the choice isn't necessary"
+      user_next = raw_input("Type here: ").lower()
+      spell_check()    
+  spell_check()
+  if user_next == "deposit all":
+    deposit_all()
+  if user_next == "deposit one":
+    deposit_one()
+  if user_next == "withdraw":
+    withdraw()
+  if user_next == "transfer":
+    transfer()
+  if user_next == "toggle percentages":
+    toggle_percentages()
+  if user_next == "help":
+    help()
+  user_actions()
+
+
+user_actions()
+#Define Functions to accomplish tasks
