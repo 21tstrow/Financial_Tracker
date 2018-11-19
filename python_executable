@@ -34,6 +34,13 @@ options = ["Deposit All", "Deposit One", "Withdraw", "Transfer", "Toggle Percent
 
 options_compare = ["deposit all", "deposit one", "withdraw", "transfer", "toggle percentages", "help"]
 
+totals_dict = {}
+v = len(categories) - 1
+while v != -1:
+  totals_dict.update({categories[v] : budgets[v]})
+  v -= 1
+print totals_dict
+
 def user_actions():
   print "What would you like to do?"
   i = 0
@@ -66,8 +73,52 @@ def user_actions():
   if user_next == "toggle percentages":
     toggle_percentages()
   if user_next == "help":
-    help()
+    h_elp()
   user_actions()
+
+
+
+def deposit_one():
+  testcase = 1
+  print "Which category would you like to add funds to?"
+  global user_cat1
+  user_cat1 = raw_input("Type here: ")
+  def spell_check2():
+    testcase = 1
+    global user_cat1
+    for i in categories:
+      if i == user_cat1:
+        testcase = 0
+    if testcase == 0:
+      print ("Double check your spelling and capitals and try again: ")
+      user_cat1 = raw_input("Type here: ")
+      spell_check2()
+  spell_check2()
+  print "How much would you like to deposit?"
+  global dep_amount
+  dep_amount = float(raw_input("Type here: "))
+  
+#FINISH DEPOSIT ONE
+
+def h_elp():
+  print """
+  These are what each option entails. To choose one, just type its name, spaces and all.
+
+  Deposit All --- This deposits any funds you wish to add divided up into all of your categories at once. 
+  It divides based on your percentages, which you can change by using \"Toggle Percentages\". 
+  Without changing your percentages, Deposit All will put funds into each of your categories evenly.
+
+  Deposit One --- This directly deposits any funds you wish to add soley into one specified category.
+
+  Withdraw --- This allows you to remove funds from one category
+
+  Transfer --- This allows you to move funds from one caategory to another
+
+  Toggle Percentages --- This allows you to change the percentages used in \"Deposit All\".
+
+  Help --- Prints the above menu
+  """
+
 
 
 user_actions()
