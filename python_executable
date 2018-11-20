@@ -5,29 +5,32 @@ categories = []
 v = 1
 while v <= num_rows:
   categories.append(raw_input(("Type category #%s here: ") % (v)))
-  budgets.append(raw_input(("Type the budget for category #%s here: ") % (v)))
+  budgets.append(int(raw_input(("Type the budget for category #%s here: ") % (v))))
   v += 1
-print " "
-print "[Category] [Budget Remaining]"
-i = 0
-while i != num_rows:
-  print "%s" % (categories[i]),
-  l = 0
-  
-  if len(categories[i]) < 10:
-    xyz = 10 - len(categories[i]) - 3
-    l = 0
-    if xyz % 2 == 1:
-      l = 1
-    while not((xyz < 0)):
-      print " ",
-      xyz -= 2
-
-  print "= ",
-  print "%s" % ("$" + budgets[i])
+def cat_display():
+ 
   print " "
-  i += 1
+  print "[Category] [Budget Remaining]"
+  i = 0
+  while i != num_rows:
+    print "%s" % (categories[i]),
+    l = 0
+  
+    if len(categories[i]) < 10:
+      xyz = 10 - len(categories[i]) - 3
+      l = 0
+      if xyz % 2 == 1:
+        l = 1
+      while not((xyz < 0)):
+        print " ",
+        xyz -= 2
 
+    print "= ",
+    print "%s" % ("$" + str(budgets[i]))
+    print " "
+    i += 1
+
+cat_display()
 i = 0
 
 options = ["Deposit All", "Deposit One", "Withdraw", "Transfer", "Toggle Percentages", "Help"]
@@ -86,7 +89,7 @@ def deposit_one():
   def spell_check2():
     testcase = 1
     global user_cat1
-    for i in categories:
+    for i in budgets:
       if i == user_cat1:
         testcase = 0
     if testcase == 0:
@@ -96,9 +99,15 @@ def deposit_one():
   spell_check2()
   print "How much would you like to deposit?"
   global dep_amount
-  dep_amount = float(raw_input("Type here: "))
+  dep_amount = float(raw_input("Type here: "))  
+  for i in categories:
+    if i == user_cat1:
+      totals_dict[i] += dep_amount
+  cat_display()
+
   
 #FINISH DEPOSIT ONE
+#Print values from totals_dict instead of individually from categories and budgets
 
 def h_elp():
   print """
