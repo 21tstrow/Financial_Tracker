@@ -124,7 +124,28 @@ def h_elp():
   Help --- Prints the above menu
   """
 
+global percentages
+percentages = {}
+base_percent = 1 / num_rows
+for c in categories:
+  percentages.update({c : base_percent})
 
+def toggle_percentages():
+  for i in categories:
+    print "What would you like the deposit percentage to be for " + c + "?"
+    user_percentage = int(raw_input("Type here: "))
+    percentages[i] = user_percentage
+  print " "
+    
+def deposit_all():
+  print "How much would you like to deposit?"
+  dep_value = float(raw_input("Type here: "))
+  for i in categories:
+    current_percent = percentages[i]
+    budgets[categories.index(i)] += (dep_value / current_percent)
+  cat_display()
+    
+#finish deposit_all
 
 user_actions()
 #Define Functions to accomplish tasks
