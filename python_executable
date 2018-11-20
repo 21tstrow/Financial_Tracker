@@ -102,12 +102,8 @@ def deposit_one():
   dep_amount = float(raw_input("Type here: "))  
   for i in categories:
     if i == user_cat1:
-      totals_dict[i] += dep_amount
+      budgets[categories.index(user_cat1)] += dep_amount
   cat_display()
-
-  
-#FINISH DEPOSIT ONE
-#Print values from totals_dict instead of individually from categories and budgets
 
 def h_elp():
   print """
