@@ -8,7 +8,8 @@ while v <= num_rows:
   budgets.append(int(raw_input(("Type the budget for category #%s here: ") % (v))))
   v += 1
 def cat_display():
- 
+  print " "
+  print " "
   print " "
   print "[Category] [Budget Remaining]"
   i = 0
@@ -145,6 +146,71 @@ def deposit_all():
     budgets[categories.index(i)] += (dep_value * current_percent)
   cat_display()
 
+def withdraw():
+  testcase = 1
+  print "Which category would you like to remove funds from?"
+  global user_cat1
+  user_cat1 = raw_input("Type here: ")
+  def spell_check2():
+    testcase = 1
+    global user_cat1
+    for i in budgets:
+      if i == user_cat1:
+        testcase = 0
+    if testcase == 0:
+      print ("Double check your spelling and capitals and try again: ")
+      user_cat1 = raw_input("Type here: ")
+      spell_check2()
+  spell_check2()
+  print "How much would you like to withdraw?"
+  global dep_amount
+  dep_amount = float(raw_input("Type here: "))  
+  for i in categories:
+    if i == user_cat1:
+      budgets[categories.index(user_cat1)] -= dep_amount
+  cat_display()
+
+def transfer():
+  testcase = 1
+  print "Which category would you like to transfer funds from?"
+  global user_cat1
+  user_cat1 = raw_input("Type here: ")
+  def spell_check2():
+    testcase = 1
+    global user_cat1
+    for i in budgets:
+      if i == user_cat1:
+        testcase = 0
+    if testcase == 0:
+      print ("Double check your spelling and capitals and try again: ")
+      user_cat1 = raw_input("Type here: ")
+      spell_check2()
+  spell_check2()
+  def spell_check3():
+    testcase = 1
+    global user_cat2
+    for i in budgets:
+      if i == user_cat2:
+        testcase = 0
+    if testcase == 0:
+      print ("Double check your spelling and capitals and try again: ")
+      user_cat2 = raw_input("Type here: ")
+      spell_check3()
+  spell_check2()
+  print "Which category would you like to transfer funds to?"
+  global user_cat2
+  user_cat2 = raw_input("Type here: ")
+  spell_check3
+  print "How much would you like to transfer?"
+  global transfer_amount
+  transfer_amount = float(raw_input("Type here: "))  
+  for i in categories:
+    if i == user_cat1:
+      budgets[categories.index(user_cat1)] -= transfer_amount
+    if i == user_cat1:
+      budgets[categories.index(user_cat2)] += transfer_amount
+  cat_display()
+
 
 user_actions()
-#Define Functions to accomplish tasks
+#Use files to keep info
