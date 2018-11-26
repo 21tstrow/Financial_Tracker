@@ -200,7 +200,7 @@ def transfer():
   print "Which category would you like to transfer funds to?"
   global user_cat2
   user_cat2 = raw_input("Type here: ")
-  spell_check3
+  spell_check3()
   print "How much would you like to transfer?"
   global transfer_amount
   transfer_amount = float(raw_input("Type here: "))  
