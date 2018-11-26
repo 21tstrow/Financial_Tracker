@@ -1,23 +1,50 @@
-num_rows = int(raw_input("How many categories do you want to track? Type the number here in integer form: "))
-wxyz = num_rows
+user_choice = raw_input("Do you want to import a pre-existing account? Type yes or no:").lower()
+
 budgets = []
 categories = []
-v = 1
-while v <= num_rows:
-  categories.append(raw_input(("Type category #%s here: ") % (v)))
-  budgets.append(int(raw_input(("Type the budget for category #%s here: ") % (v))))
-  v += 1
-
+global wxyz
 global user_filename
-user_filename = raw_input("What do you want your file name to be?")
+if user_choice == "yes":
+  imported_file = raw_input("What is the file name? Include capitals and punctuation. Be careful! Type here: ")
+  global user_filename
+  user_filename = imported_file
+  num_rows = 0
+  files = open(user_filename, "r")
+  userlines = files.readlines()
+  testcase2 = 0
+  for i in userlines:
+    if userlines != " " and testcase2 == 0:
+      categories.append(i)
+    elif userlines == " ":
+      testcase2 = 1
+    elif userlines != " " and testcase2 == 1:
+      budgets.append(int(i))
+  
+  for i in categories:
+    num_rows += 1
+  global wxyz
+  wxyz = num_rows
+else:
+  num_rows = int(raw_input("How many categories do you want to track? Type the number here in integer form: "))
+  global wxyz
+  wxyz = num_rows
+  v = 1
+  while v <= num_rows:
+    categories.append(raw_input(("Type category #%s here: ") % (v)))
+    budgets.append(int(raw_input(("Type the budget for category #%s here: ") % (v))))
+    v += 1
+
+  global user_filename
+  user_filename = raw_input("What do you want your file name to be?")
 
 
 def cat_display():
+  open(user_filename, "w").close()
   global user_filename
   files = open(user_filename, "a+")
   for i in categories:
     files.write(i + "\n")
-  files.write("\n \n")
+  files.write("\n")
   for c in budgets:
     files.write(str(c) + "\n") 
   files.close()
