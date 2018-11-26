@@ -1,5 +1,5 @@
 num_rows = int(raw_input("How many categories do you want to track? Type the number here in integer form: "))
-
+wxyz = num_rows
 budgets = []
 categories = []
 v = 1
@@ -126,14 +126,14 @@ def h_elp():
 
 global percentages
 percentages = {}
-base_percent = 1 / num_rows
+base_percent = 1.0 / wxyz
 for c in categories:
   percentages.update({c : base_percent})
 
 def toggle_percentages():
   for i in categories:
-    print "What would you like the deposit percentage to be for " + c + "?"
-    user_percentage = int(raw_input("Type here: "))
+    print "What would you like the deposit percentage to be for " + i + "?"
+    user_percentage = (float(raw_input("Type here: ")))/100
     percentages[i] = user_percentage
   print " "
     
@@ -141,11 +141,10 @@ def deposit_all():
   print "How much would you like to deposit?"
   dep_value = float(raw_input("Type here: "))
   for i in categories:
-    current_percent = percentages[i]
-    budgets[categories.index(i)] += (dep_value / current_percent)
+    current_percent = percentages.get(i)
+    budgets[categories.index(i)] += (dep_value * current_percent)
   cat_display()
-    
-#finish deposit_all
+
 
 user_actions()
 #Define Functions to accomplish tasks
