@@ -15,8 +15,15 @@ user_filename = raw_input("What do you want your file name to be?")
 def cat_display():
   global user_filename
   files = open(user_filename, "a+")
-  files.write(categories)
-  files.write(budgets)
+  for i in categories:
+    files.write(i + "\n")
+  files.write("\n \n")
+  for c in budgets:
+    files.write(str(c) + "\n") 
+  files.close()
+  files = open(user_filename, "r")
+  contents = files.read()
+  print contents
   print " "
   print " "
   print " "
