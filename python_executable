@@ -7,7 +7,16 @@ while v <= num_rows:
   categories.append(raw_input(("Type category #%s here: ") % (v)))
   budgets.append(int(raw_input(("Type the budget for category #%s here: ") % (v))))
   v += 1
+
+global user_filename
+user_filename = raw_input("What do you want your file name to be?")
+
+
 def cat_display():
+  global user_filename
+  files = open(user_filename, "a+")
+  files.write(categories)
+  files.write(budgets)
   print " "
   print " "
   print " "
@@ -200,7 +209,7 @@ def transfer():
   print "Which category would you like to transfer funds to?"
   global user_cat2
   user_cat2 = raw_input("Type here: ")
-  spell_check3()
+  spell_check3
   print "How much would you like to transfer?"
   global transfer_amount
   transfer_amount = float(raw_input("Type here: "))  
