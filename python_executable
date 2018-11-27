@@ -11,14 +11,13 @@ if user_choice == "yes":
   num_rows = 0
   files = open(user_filename, "r")
   userlines = files.readlines()
-  testcase2 = 0
+  
   for i in userlines:
-    if userlines != " " and testcase2 == 0:
-      categories.append(i)
-    elif userlines == " ":
-      testcase2 = 1
-    elif userlines != " " and testcase2 == 1:
-      budgets.append(int(i))
+    i = i.rstrip('\n')
+    try:
+      budgets.append(float(i.rstrip('\n')))
+    except ValueError:
+      categories.append(i.rstrip('\n'))
   
   for i in categories:
     num_rows += 1
@@ -50,7 +49,8 @@ def cat_display():
   files.close()
   files = open(user_filename, "r")
   contents = files.read()
-  print contents
+  print budgets
+  print categories
   print " "
   print " "
   print " "
