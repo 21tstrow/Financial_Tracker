@@ -18,7 +18,7 @@ if user_choice == "yes":
       budgets.append(float(i.rstrip('\n')))
     except ValueError:
       categories.append(i.rstrip('\n'))
-  
+  categories = filter(None, categories)
   for i in categories:
     num_rows += 1
   global wxyz
