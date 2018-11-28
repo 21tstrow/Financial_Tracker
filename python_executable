@@ -24,14 +24,37 @@ if user_choice == "yes":
   global wxyz
   wxyz = num_rows
 else:
-  num_rows = int(raw_input("How many categories do you want to track? Type the number here in integer form: "))
+  global num_rows
+  num_rows = (raw_input("How many categories do you want to track? Type the number here in integer form: "))
+  def int_check():
+    global num_rows
+    try:
+      int(num_rows)
+    except ValueError:
+      print "Make sure you enter a number value!"
+      num_rows = raw_input("Type Here: ")
+      int_check()
+  int_check()
+  num_rows = int(num_rows)
   global wxyz
   wxyz = num_rows
   v = 1
   while v <= num_rows:
     categories.append(raw_input(("Type category #%s here: ") % (v)))
-    budgets.append(int(raw_input(("Type the budget for category #%s here: ") % (v))))
+    global budget_input
+    budget_input = (raw_input(("Type the budget for category #%s here: ") % (v)))
+    def float_check():
+      global budget_input
+      try:
+        float(budget_input)
+      except ValueError:
+        print "Please type a number value!"
+        budget_input = raw_input("Type Here: ")
+    float_check()
+    float(budget_input)
+    budgets.append(budget_input)
     v += 1
+
 
   global user_filename
   user_filename = raw_input("What do you want your file name to be?")
@@ -49,8 +72,6 @@ def cat_display():
   files.close()
   files = open(user_filename, "r")
   contents = files.read()
-  print budgets
-  print categories
   print " "
   print " "
   print " "
@@ -86,7 +107,7 @@ v = len(categories) - 1
 while v != -1:
   totals_dict.update({categories[v] : budgets[v]})
   v -= 1
-print totals_dict
+
 
 def user_actions():
   print "What would you like to do?"
