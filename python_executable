@@ -51,7 +51,7 @@ else:
         print "Please type a number value!"
         budget_input = raw_input("Type Here: ")
     float_check()
-    float(budget_input)
+    budget_input = float(budget_input)
     budgets.append(budget_input)
     v += 1
 
