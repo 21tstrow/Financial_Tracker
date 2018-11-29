@@ -164,7 +164,16 @@ def deposit_one():
   spell_check2()
   print "How much would you like to deposit?"
   global dep_amount
-  dep_amount = float(raw_input("Type here: "))  
+  dep_amount =(raw_input("Type here: "))
+  def dep_one_check():
+    global dep_amount
+    try:
+      dep_amount = float(dep_amount)
+    except ValueError:
+      print "Please enter a number and try again."
+      dep_amount = raw_input("Type here: ")
+      dep_one_check()
+  dep_one_check()  
   for i in categories:
     if i == user_cat1:
       budgets[categories.index(user_cat1)] += dep_amount
@@ -198,7 +207,18 @@ for c in categories:
 def toggle_percentages():
   for i in categories:
     print "What would you like the deposit percentage to be for " + i + "?"
-    user_percentage = (float(raw_input("Type here: ")))/100
+    global user_percentage
+    user_percentage = raw_input("Type here: ")
+    def toggle_check():
+      global user_percentage
+      try:
+        user_percentage = float(user_percentage)
+      except ValueError:
+        print "Please enter a number!"
+        user_percentage = raw_input("Type here: ")
+        toggle_check()
+    toggle_check()
+    user_percentage = (float(raw_input(user_percentage)))/100
     percentages[i] = user_percentage
   print " "
     
