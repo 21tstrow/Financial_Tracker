@@ -204,10 +204,21 @@ def toggle_percentages():
     
 def deposit_all():
   print "How much would you like to deposit?"
-  dep_value = float(raw_input("Type here: "))
+  global dep_value
+  dep_value = raw_input("Type here: ")
+  def depo_all_float_check():
+    global dep_value
+    try:
+      float(dep_value)
+    except ValueError:
+      print "Please enter a number"
+      dep_value = raw_input("Type here: ")
+      depo_all_float_check()
+  depo_all_float_check()
+  dep_value = float(dep_value)
   for i in categories:
     current_percent = percentages.get(i)
-    budgets[categories.index(i)] += (dep_value * current_percent)
+    budgets[categories.index(i)] += (float(dep_value) * float(current_percent))
   cat_display()
 
 def withdraw():
@@ -218,17 +229,27 @@ def withdraw():
   def spell_check2():
     testcase = 1
     global user_cat1
-    for i in budgets:
+    for i in categories:
       if i == user_cat1:
         testcase = 0
-    if testcase == 0:
+    if testcase == 1:
       print ("Double check your spelling and capitals and try again: ")
       user_cat1 = raw_input("Type here: ")
       spell_check2()
   spell_check2()
   print "How much would you like to withdraw?"
   global dep_amount
-  dep_amount = float(raw_input("Type here: "))  
+  dep_amount = raw_input("Type here: ")
+  def dep_float_check():
+    global dep_amount
+    try:
+      float(dep_amount)
+    except ValueError:
+      print "Please enter a number value"
+      dep_amount = raw_input("Type here: ")
+      dep_float_check()
+  dep_float_check()
+  dep_amount = float(dep_amount)  
   for i in categories:
     if i == user_cat1:
       budgets[categories.index(user_cat1)] -= dep_amount
@@ -275,6 +296,7 @@ def transfer():
     except ValueError:
       print "Please enter a number value"
       transfer_amount = raw_input("Type here: ")
+      transfer_float_check()
   transfer_float_check()
   transfer_amount = float(transfer_amount)
   for i in categories:
