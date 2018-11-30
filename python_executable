@@ -154,10 +154,10 @@ def deposit_one():
   def spell_check2():
     testcase = 1
     global user_cat1
-    for i in budgets:
+    for i in categories:
       if i == user_cat1:
         testcase = 0
-    if testcase == 0:
+    if testcase == 1:
       print ("Double check your spelling and capitals and try again: ")
       user_cat1 = raw_input("Type here: ")
       spell_check2()
@@ -218,7 +218,7 @@ def toggle_percentages():
         user_percentage = raw_input("Type here: ")
         toggle_check()
     toggle_check()
-    user_percentage = (float(raw_input(user_percentage)))/100
+    user_percentage = (float(user_percentage))/100
     percentages[i] = user_percentage
   print " "
     
