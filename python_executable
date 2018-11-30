@@ -1,5 +1,6 @@
-user_choice = raw_input("Do you want to import a pre-existing account? Type yes or no:").lower()
 
+user_choice = raw_input("Do you want to import a pre-existing account? Type yes or no:").lower()
+global num_rows
 budgets = []
 categories = []
 global wxyz
@@ -24,7 +25,6 @@ if user_choice == "yes":
   global wxyz
   wxyz = num_rows
 else:
-  global num_rows
   num_rows = (raw_input("How many categories do you want to track? Type the number here in integer form: "))
   def int_check():
     global num_rows
@@ -36,7 +36,6 @@ else:
       int_check()
   int_check()
   num_rows = int(num_rows)
-  global wxyz
   wxyz = num_rows
   v = 1
   while v <= num_rows:
@@ -54,15 +53,12 @@ else:
     budget_input = float(budget_input)
     budgets.append(budget_input)
     v += 1
-
-
-  global user_filename
   user_filename = raw_input("What do you want your file name to be?")
 
 
 def cat_display():
-  open(user_filename, "w").close()
   global user_filename
+  open(user_filename, "w").close()
   files = open(user_filename, "a+")
   for i in categories:
     files.write(i + "\n")
